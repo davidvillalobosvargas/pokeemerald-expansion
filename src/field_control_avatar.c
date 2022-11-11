@@ -3,7 +3,7 @@
 #include "bike.h"
 #include "coord_event_weather.h"
 #include "daycare.h"
-// #include "debug.h"
+#include "debug.h"
 #include "dexnav.h"
 #include "faraway_island.h"
 #include "event_data.h"
