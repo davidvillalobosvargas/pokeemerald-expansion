@@ -4064,7 +4064,7 @@ static void Cmd_getexp(void)
                 gBattleScripting.getexpState = 5;
                 gBattleMoveDamage = 0; // used for exp
             #if B_MAX_LEVEL_EV_GAINS >= GEN_5
-                MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                // MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
             #endif
             }
             else
@@ -4159,7 +4159,7 @@ static void Cmd_getexp(void)
                     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff3, 6, gBattleMoveDamage);
 
                     PrepareStringBattle(STRINGID_PKMNGAINEDEXP, gBattleStruct->expGetterBattlerId);
-                    MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
+                    // MonGainEVs(&gPlayerParty[gBattleStruct->expGetterMonId], gBattleMons[gBattlerFainted].species);
                 }
                 gBattleStruct->sentInPokes >>= 1;
                 gBattleScripting.getexpState++;
