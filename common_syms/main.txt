@@ -2,6 +2,7 @@ gKeyRepeatStartDelay
 gLinkTransferringData
 gMain
 gKeyRepeatContinueDelay
+gShouldGiveZeroExp
 gSoftResetDisabled
 gIntrTable
 gLinkVSyncDisabled

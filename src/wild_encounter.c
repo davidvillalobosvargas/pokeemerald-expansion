@@ -23,6 +23,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/weather.h"
+#include "main.h"
 
 extern const u8 EventScript_RepelWoreOff[];
 
@@ -421,6 +422,7 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, u8 ar
 {
     u8 wildMonIndex = 0;
     u8 level;
+    gShouldGiveZeroExp=TRUE;
 
     switch (area)
     {

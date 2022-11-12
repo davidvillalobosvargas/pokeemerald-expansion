@@ -63,6 +63,7 @@ u16 gKeyRepeatStartDelay;
 bool8 gLinkTransferringData;
 struct Main gMain;
 u16 gKeyRepeatContinueDelay;
+bool8 gShouldGiveZeroExp;
 bool8 gSoftResetDisabled;
 IntrFunc gIntrTable[INTR_COUNT];
 u8 gLinkVSyncDisabled;

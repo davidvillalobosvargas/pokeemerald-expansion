@@ -1118,6 +1118,8 @@ void SetMapVarsToTrainer(void)
 
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 {
+    gShouldGiveZeroExp=FALSE;
+
     if (TrainerBattleLoadArg8(data) != TRAINER_BATTLE_SET_TRAINER_B)
         InitTrainerBattleVariables();
     sTrainerBattleMode = TrainerBattleLoadArg8(data);
