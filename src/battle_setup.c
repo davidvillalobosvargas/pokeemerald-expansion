@@ -1126,10 +1126,32 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 
     switch (sTrainerBattleMode)
     {
+    case TRAINER_BATTLE_SINGLE_ZERO_EXP:
+        gShouldGiveZeroExp=TRUE;
+        if (gApproachingTrainerId == 0)
+        {
+            TrainerBattleLoadArgs(sOrdinaryBattleParams, data);
+            SetMapVarsToTrainer();
+        }
+        else
+        {
+            TrainerBattleLoadArgs(sTrainerBOrdinaryBattleParams, data);
+        }
+        return EventScript_TryDoNormalTrainerBattle;    
+        
     case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT:
         TrainerBattleLoadArgs(sOrdinaryNoIntroBattleParams, data);
         return EventScript_DoNoIntroTrainerBattle;
+    case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT_ZERO_EXP:
+        gShouldGiveZeroExp=TRUE;
+        TrainerBattleLoadArgs(sOrdinaryNoIntroBattleParams, data);
+        return EventScript_DoNoIntroTrainerBattle;
     case TRAINER_BATTLE_DOUBLE:
+        TrainerBattleLoadArgs(sDoubleBattleParams, data);
+        SetMapVarsToTrainer();
+        return EventScript_TryDoDoubleTrainerBattle;
+    case TRAINER_BATTLE_DOUBLE_ZERO_EXP:
+        gShouldGiveZeroExp=TRUE;
         TrainerBattleLoadArgs(sDoubleBattleParams, data);
         SetMapVarsToTrainer();
         return EventScript_TryDoDoubleTrainerBattle;
@@ -1144,12 +1166,35 @@ const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
             TrainerBattleLoadArgs(sTrainerBContinueScriptBattleParams, data);
         }
         return EventScript_TryDoNormalTrainerBattle;
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_ZERO_EXP:
+        gShouldGiveZeroExp=TRUE;
+        if (gApproachingTrainerId == 0)
+        {
+            TrainerBattleLoadArgs(sContinueScriptBattleParams, data);
+            SetMapVarsToTrainer();
+        }
+        else
+        {
+            TrainerBattleLoadArgs(sTrainerBContinueScriptBattleParams, data);
+        }
+        return EventScript_TryDoNormalTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC:
         TrainerBattleLoadArgs(sContinueScriptBattleParams, data);
         SetMapVarsToTrainer();
         return EventScript_TryDoNormalTrainerBattle;
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC_ZERO_EXP:
+        gShouldGiveZeroExp=TRUE;
+        TrainerBattleLoadArgs(sContinueScriptBattleParams, data);
+        SetMapVarsToTrainer();
+        return EventScript_TryDoNormalTrainerBattle;
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE:
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_ZERO_EXP:
     case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC:
+        TrainerBattleLoadArgs(sContinueScriptDoubleBattleParams, data);
+        SetMapVarsToTrainer();
+        return EventScript_TryDoDoubleTrainerBattle;
+    case TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC_ZERO_EXP:
+        gShouldGiveZeroExp=TRUE;
         TrainerBattleLoadArgs(sContinueScriptDoubleBattleParams, data);
         SetMapVarsToTrainer();
         return EventScript_TryDoDoubleTrainerBattle;

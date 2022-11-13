@@ -118,6 +118,13 @@ EventScript_DoTrainerBattle::
 	goto_if_eq VAR_RESULT, TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC, EventScript_EndTrainerBattle
 	goto_if_eq VAR_RESULT, TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE, EventScript_EndTrainerBattle
 	goto_if_eq VAR_RESULT, TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC, EventScript_EndTrainerBattle
+	goto_if_eq VAR_RESULT, TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT_ZERO_EXP, EventScript_EndTrainerBattleNoHeal
+	goto_if_eq VAR_RESULT, TRAINER_BATTLE_SINGLE_ZERO_EXP, EventScript_EndTrainerBattleNoHeal
+	goto_if_eq VAR_RESULT, TRAINER_BATTLE_DOUBLE_ZERO_EXP, EventScript_EndTrainerBattleNoHeal
+	goto_if_eq VAR_RESULT, TRAINER_BATTLE_CONTINUE_SCRIPT_ZERO_EXP, EventScript_EndTrainerBattleNoHeal
+	goto_if_eq VAR_RESULT, TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC_ZERO_EXP, EventScript_EndTrainerBattleNoHeal
+	goto_if_eq VAR_RESULT, TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_ZERO_EXP, EventScript_EndTrainerBattleNoHeal
+	goto_if_eq VAR_RESULT, TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC_ZERO_EXP, EventScript_EndTrainerBattleNoHeal
 EventScript_EndTrainerBattle::
 	fadescreen FADE_TO_BLACK
 	playfanfare MUS_HEAL
@@ -126,6 +133,11 @@ EventScript_EndTrainerBattle::
 	gotobeatenscript
 	releaseall
 	end
+EventScript_EndTrainerBattleNoHeal::
+	gotobeatenscript
+	releaseall
+	end
+
 
 Std_MsgboxAutoclose::
 	message NULL

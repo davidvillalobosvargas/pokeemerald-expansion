@@ -689,7 +689,14 @@
 	.if \type == TRAINER_BATTLE_SINGLE
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
+	.elseif \type == TRAINER_BATTLE_SINGLE_ZERO_EXP
+		.4byte \pointer1 @ text
+		.4byte \pointer2 @ text
 	.elseif \type == TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC
+		.4byte \pointer1 @ text
+		.4byte \pointer2 @ text
+		.4byte \pointer3 @ event script
+	.elseif \type == TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC_ZERO_EXP
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
 		.4byte \pointer3 @ event script
@@ -697,9 +704,19 @@
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
 		.4byte \pointer3 @ event script
+	.elseif \type == TRAINER_BATTLE_CONTINUE_SCRIPT_ZERO_EXP
+		.4byte \pointer1 @ text
+		.4byte \pointer2 @ text
+		.4byte \pointer3 @ event script
 	.elseif \type == TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT
 		.4byte \pointer1 @ text
+	.elseif \type == TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT_ZERO_EXP
+		.4byte \pointer1 @ text
 	.elseif \type == TRAINER_BATTLE_DOUBLE
+		.4byte \pointer1 @ text
+		.4byte \pointer2 @ text
+		.4byte \pointer3 @ text
+	.elseif \type == TRAINER_BATTLE_DOUBLE_ZERO_EXP
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
 		.4byte \pointer3 @ text
@@ -711,11 +728,21 @@
 		.4byte \pointer2 @ text
 		.4byte \pointer3 @ text
 		.4byte \pointer4 @ event script
+	.elseif \type == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_ZERO_EXP
+		.4byte \pointer1 @ text
+		.4byte \pointer2 @ text
+		.4byte \pointer3 @ text
+		.4byte \pointer4 @ event script
 	.elseif \type == TRAINER_BATTLE_REMATCH_DOUBLE
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
 		.4byte \pointer3 @ text
 	.elseif \type == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC
+		.4byte \pointer1 @ text
+		.4byte \pointer2 @ text
+		.4byte \pointer3 @ text
+		.4byte \pointer4 @ event script
+	.elseif \type == TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC_ZERO_EXP
 		.4byte \pointer1 @ text
 		.4byte \pointer2 @ text
 		.4byte \pointer3 @ text
@@ -736,6 +763,19 @@
 	.endm
 
 	NO_MUSIC = FALSE
+
+	@ Starts a single trainer battle no exp. Takes a trainer, intro text, loss text, and an optional event script.
+	@ When used with an event script, you can also pass in an optional flag to disable music
+	.macro trainerbattle_single_zero_exp trainer:req, intro_text:req, lose_text:req, event_script=FALSE, music=TRUE
+	.if \event_script == FALSE
+	trainerbattle TRAINER_BATTLE_SINGLE_ZERO_EXP, \trainer, 0, \intro_text, \lose_text
+	.elseif \music == TRUE
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_ZERO_EXP, \trainer, 0, \intro_text, \lose_text, \event_script
+	.else
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_NO_MUSIC_ZERO_EXP, \trainer, 0, \intro_text, \lose_text, \event_script
+	.endif
+	.endm
+
 
 	@ Starts a single trainer battle. Takes a trainer, intro text, loss text, and an optional event script.
 	@ When used with an event script, you can also pass in an optional flag to disable music
@@ -761,6 +801,18 @@
 	.endif
 	.endm
 
+	@ Starts a double trainer battle no exp. Takes a trainer, intro text, loss text, text for when you have too few pokemon
+	@ and an optional event script. When used with an event script you can pass in an optional flag to disable music
+	.macro trainerbattle_double_zero_exp trainer:req, intro_text:req, lose_text:req, not_enough_pkmn_text:req, event_script=FALSE, music=TRUE
+	.if \event_script == FALSE
+	trainerbattle TRAINER_BATTLE_DOUBLE_ZERO_EXP, \trainer, 0, \intro_text, \lose_text, \not_enough_pkmn_text
+	.elseif \music == TRUE
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_ZERO_EXP, \trainer, 0, \intro_text, \lose_text, \not_enough_pkmn_text, \event_script
+	.else
+	trainerbattle TRAINER_BATTLE_CONTINUE_SCRIPT_DOUBLE_NO_MUSIC_ZERO_EXP, \trainer, 0, \intro_text, \lose_text, \not_enough_pkmn_text, \event_script
+	.endif
+	.endm
+
 	@ Starts a rematch battle. Takes a trainer, intro text and loss text
 	.macro trainerbattle_rematch trainer:req, intro_text:req, lose_text:req
 	trainerbattle TRAINER_BATTLE_REMATCH, \trainer, 0, \intro_text, \lose_text
@@ -774,6 +826,11 @@
 	@ Starts a trainer battle, skipping intro text. Takes a trainer and loss text
 	.macro trainerbattle_no_intro trainer:req, lose_text:req
 	trainerbattle TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT, \trainer, 0, \lose_text
+	.endm
+
+	@ Starts a trainer battle zero exp, skipping intro text. Takes a trainer and loss text
+	.macro trainerbattle_no_intro_zero_exp trainer:req, lose_text:req
+	trainerbattle TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT_ZERO_EXP, \trainer, 0, \lose_text
 	.endm
 
 
