@@ -73,6 +73,7 @@ static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_RockSmash(u8);
+static void ItemUseOnFieldCB_Cut(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1225,6 +1226,25 @@ static void ItemUseOnFieldCB_RockSmash(u8 taskId)
 {
     gFieldEffectArguments[0] = gPartyMenu.slotId=0;
     ScriptContext_SetupScript(EventScript_UseRockSmash);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Cut(u8 taskId)
+{
+    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_CUTTABLE_TREE) == TRUE && FlagGet(FLAG_BADGE06_GET))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Cut;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Cut(u8 taskId)
+{
+    gFieldEffectArguments[0] = gPartyMenu.slotId=0;
+    ScriptContext_SetupScript(EventScript_UseCut);
     DestroyTask(taskId);
 }
 

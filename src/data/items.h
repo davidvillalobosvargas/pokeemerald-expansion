@@ -9865,4 +9865,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_RockSmash,
     },
+    
+    [ITEM_FIELD_CUT] =
+    {
+        .name = _("CutITEM"),
+        .itemId = ITEM_FIELD_CUT,
+        .price = 0,
+        .description = sFieldCutDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Cut,
+    },
 };

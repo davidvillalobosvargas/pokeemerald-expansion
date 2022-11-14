@@ -132,7 +132,8 @@ Route119_EventScript_DefeatedBrendan::
 	end
 
 Route119_EventScript_GiveFlyHM::
-	giveitem ITEM_HM02
+	giveitem ITEM_HM01
+	giveitem ITEM_FIELD_CUT
 	setflag FLAG_RECEIVED_HM02
 	return
 
@@ -499,13 +500,12 @@ Route119_Text_MayPresentForYou:
 	.string "And, here! I have a present for you.$"
 
 Route119_Text_MayExplainFly:
-	.string "MAY: Use FLY, and your POKéMON will\n"
-	.string "instantly carry you to any town you've\l"
-	.string "already visited.\p"
-	.string "But, to use FLY, you have to get\n"
+	.string "MAY: That ITEM contains CUT.\n"
+	.string "use CUT to chop down thin trees.\p"
+	.string "But, to use CUT, you have to get\n"
 	.string "the GYM BADGE from FORTREE CITY.\l"
 	.string "That's important, so don't forget.\p"
-	.string "You should FLY home and visit\n"
+	.string "You should go home and visit\n"
 	.string "LITTLEROOT for a change.\p"
 	.string "I bet your mom's worried about you,\n"
 	.string "{PLAYER}{KUN}.\p"
@@ -530,9 +530,8 @@ Route119_Text_BrendanIllGiveYouThis:
 	.string "Try it out.$"
 
 Route119_Text_BrendanExplainFly:
-	.string "BRENDAN: Use FLY, and your POKéMON\n"
-	.string "instantly carries you to any town\l"
-	.string "you've already visited.\p"
+	.string "BRENDAN: That ITEM contains CUT.\n"
+	.string "use CUT to chop down thin trees.\p"
 	.string "But you need the FORTREE GYM BADGE \n"
 	.string "to do that.\p"
 	.string "Anyway, I have to move along.$"

@@ -3796,3 +3796,7 @@ static const u8 sSapphireDesc[] = _(
 static const u8 sFieldRockSmashDesc[] = _(
     "Shatter rocks and\n"
     "open new paths.");
+
+static const u8 sFieldCutDesc[] = _(
+    "Cut down thin trees\n"
+    "and grass.");
