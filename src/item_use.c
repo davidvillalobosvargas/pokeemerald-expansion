@@ -42,6 +42,7 @@
 #include "constants/item_effects.h"
 #include "constants/items.h"
 #include "constants/songs.h"
+#include "fldeff.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -71,6 +72,7 @@ static void Task_UseRepel(u8);
 static void Task_CloseCantUseKeyItemMessage(u8);
 static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
+static void ItemUseOnFieldCB_RockSmash(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1205,6 +1207,25 @@ void ItemUseOutOfBattle_FormChange_ConsumedOnUse(u8 taskId)
 void ItemUseOutOfBattle_CannotUse(u8 taskId)
 {
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+}
+
+void ItemUseOutOfBattle_RockSmash(u8 taskId)
+{
+    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_BREAKABLE_ROCK) == TRUE && FlagGet(FLAG_BADGE03_GET))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_RockSmash;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_RockSmash(u8 taskId)
+{
+    gFieldEffectArguments[0] = gPartyMenu.slotId=0;
+    ScriptContext_SetupScript(EventScript_UseRockSmash);
+    DestroyTask(taskId);
 }
 
 #undef tUsingRegisteredKeyItem

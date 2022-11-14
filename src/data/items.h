@@ -9852,4 +9852,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
     },
+    
+    [ITEM_FIELD_ROCK_SMASH] =
+    {
+        .name = _("RockSmashITEM"),
+        .itemId = ITEM_FIELD_ROCK_SMASH,
+        .price = 0,
+        .description = sFieldRockSmashDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_RockSmash,
+    },
 };

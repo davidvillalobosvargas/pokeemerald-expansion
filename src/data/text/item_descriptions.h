@@ -3792,3 +3792,7 @@ static const u8 sSapphireDesc[] = _(
     "A brilliant blue gem\n"
     "that symbolizes\n"
     "honesty.");
+
+static const u8 sFieldRockSmashDesc[] = _(
+    "Shatter rocks and\n"
+    "open new paths.");
