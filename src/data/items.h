@@ -9878,4 +9878,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Cut,
     },
+    
+    [ITEM_FIELD_FLY] =
+    {
+        .name = _("FlyITEM"),
+        .itemId = ITEM_FIELD_FLY,
+        .price = 0,
+        .description = sFieldFlyDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Fly,
+    },
 };

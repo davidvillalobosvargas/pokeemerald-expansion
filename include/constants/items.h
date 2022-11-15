@@ -929,8 +929,9 @@
 #define ITEM_SAPPHIRE 757
 #define ITEM_FIELD_ROCK_SMASH 758
 #define ITEM_FIELD_CUT 759
+#define ITEM_FIELD_FLY 760
 
-#define ITEMS_COUNT 760
+#define ITEMS_COUNT 761
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

@@ -43,6 +43,7 @@
 #include "constants/items.h"
 #include "constants/songs.h"
 #include "fldeff.h"
+#include "region_map.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -74,6 +75,7 @@ static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_RockSmash(u8);
 static void ItemUseOnFieldCB_Cut(u8);
+static void ItemUseOnFieldCB_Fly(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1246,6 +1248,24 @@ static void ItemUseOnFieldCB_Cut(u8 taskId)
     gFieldEffectArguments[0] = gPartyMenu.slotId=0;
     ScriptContext_SetupScript(EventScript_UseCut);
     DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Fly(u8 taskId)
+{
+    if(Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE && FlagGet(FLAG_BADGE01_GET))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Fly;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);    
+    }
+}
+
+static void ItemUseOnFieldCB_Fly(u8 taskId)
+{
+    gFieldEffectArguments[0] = gPartyMenu.slotId=0;
+    SetMainCallback2(CB2_OpenFlyMap);
 }
 
 #undef tUsingRegisteredKeyItem
