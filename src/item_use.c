@@ -76,6 +76,7 @@ static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_RockSmash(u8);
 static void ItemUseOnFieldCB_Cut(u8);
 static void ItemUseOnFieldCB_Fly(u8);
+static void ItemUseOnFieldCB_Strength(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1266,6 +1267,25 @@ static void ItemUseOnFieldCB_Fly(u8 taskId)
 {
     gFieldEffectArguments[0] = gPartyMenu.slotId=0;
     SetMainCallback2(CB2_OpenFlyMap);
+}
+
+void ItemUseOutOfBattle_Strength(u8 taskId)
+{
+    if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_PUSHABLE_BOULDER) == TRUE && FlagGet(FLAG_BADGE04_GET))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Strength;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Strength(u8 taskId)
+{
+    gFieldEffectArguments[0] = gPartyMenu.slotId=0;
+    ScriptContext_SetupScript(EventScript_UseStrength);
+    DestroyTask(taskId);
 }
 
 #undef tUsingRegisteredKeyItem

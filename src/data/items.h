@@ -9891,4 +9891,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Fly,
     },
+
+    [ITEM_FIELD_STRENGTH] =
+    {
+        .name = _("StrengthITEM"),
+        .itemId = ITEM_FIELD_STRENGTH,
+        .price = 0,
+        .description = sFieldStrengthDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Strength,
+    },
 };

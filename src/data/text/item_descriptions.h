@@ -3804,3 +3804,6 @@ static const u8 sFieldCutDesc[] = _(
 static const u8 sFieldFlyDesc[] = _(
     "Fly to any known\n"
     "town.");
+
+static const u8 sFieldStrengthDesc[] = _(
+    "Move boulders.");
