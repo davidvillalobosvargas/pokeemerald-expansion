@@ -41,6 +41,7 @@ void ItemUseOutOfBattle_RockSmash(u8);
 void ItemUseOutOfBattle_Cut(u8);
 void ItemUseOutOfBattle_Fly(u8);
 void ItemUseOutOfBattle_Strength(u8);
+void ItemUseOutOfBattle_Surf(u8);
 
 enum {
     BALL_THROW_UNABLE_TWO_MONS,

@@ -3807,3 +3807,7 @@ static const u8 sFieldFlyDesc[] = _(
 
 static const u8 sFieldStrengthDesc[] = _(
     "Move boulders.");
+
+static const u8 sFieldSurfDesc[] = _(
+    "Travel over bodies\n"
+    "of water.");

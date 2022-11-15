@@ -9904,4 +9904,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Strength,
     },
+    
+    [ITEM_FIELD_SURF] =
+    {
+        .name = _("SurfITEM"),
+        .itemId = ITEM_FIELD_SURF,
+        .price = 0,
+        .description = sFieldSurfDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Surf,
+    },
 };

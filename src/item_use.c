@@ -77,6 +77,7 @@ static void ItemUseOnFieldCB_RockSmash(u8);
 static void ItemUseOnFieldCB_Cut(u8);
 static void ItemUseOnFieldCB_Fly(u8);
 static void ItemUseOnFieldCB_Strength(u8);
+static void ItemUseOnFieldCB_Surf(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1285,6 +1286,25 @@ static void ItemUseOnFieldCB_Strength(u8 taskId)
 {
     gFieldEffectArguments[0] = gPartyMenu.slotId=0;
     ScriptContext_SetupScript(EventScript_UseStrength);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Surf(u8 taskId)
+{
+    if (IsPlayerFacingSurfableFishableWater() == TRUE && FlagGet(FLAG_BADGE05_GET))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Surf;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Surf(u8 taskId)
+{
+    gFieldEffectArguments[0] = gPartyMenu.slotId=0;
+    ScriptContext_SetupScript(EventScript_UseSurf);
     DestroyTask(taskId);
 }
 
