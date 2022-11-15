@@ -3800,3 +3800,7 @@ static const u8 sFieldRockSmashDesc[] = _(
 static const u8 sFieldCutDesc[] = _(
     "Cut down thin trees\n"
     "and grass.");
+
+static const u8 sFieldFlyDesc[] = _(
+    "Fly to any known\n"
+    "town.");

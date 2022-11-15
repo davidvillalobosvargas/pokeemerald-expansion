@@ -805,6 +805,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_SAPPHIRE] = {gItemIcon_Gem, gItemIconPalette_Sapphire},
     [ITEM_FIELD_ROCK_SMASH] = {gItemIcon_ChoiceBand, gItemIconPalette_ChoiceBand},
     [ITEM_FIELD_CUT] = {gItemIcon_Scarf, gItemIconPalette_GreenScarf},
+    [ITEM_FIELD_FLY] = {gItemIcon_Scarf, gItemIconPalette_YellowScarf},
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };
