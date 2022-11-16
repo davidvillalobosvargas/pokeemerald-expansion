@@ -9943,4 +9943,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Flash,
     },
+
+    [ITEM_FIELD_WATERFALL] =
+    {
+        .name = _("WaterfallITEM"),
+        .itemId = ITEM_FIELD_WATERFALL,
+        .price = 0,
+        .description = sFieldWaterfallDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Waterfall,
+    },
 };

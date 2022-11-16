@@ -83,6 +83,7 @@ static void ItemUseOnFieldCB_Surf(u8);
 static void ItemUseOnFieldCB_Dive(u8);
 static void ItemUseOnFieldCB_DiveUnderWater(u8);
 static void ItemUseOnFieldCB_Flash(u8);
+static void ItemUseOnFieldCB_Waterfall(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1361,6 +1362,37 @@ static void ItemUseOnFieldCB_Flash(u8 taskId)
     PlaySE(SE_M_REFLECT);
     FlagSet(FLAG_SYS_USE_FLASH);
     ScriptContext_SetupScript(EventScript_UseFlash);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Waterfall(u8 taskId)
+{
+    s16 x, y;
+    u16 tileBehavior;
+
+    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
+    tileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+
+    if (MetatileBehavior_IsWaterfall(tileBehavior))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Waterfall;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Waterfall(u8 taskId)
+{
+    if (FlagGet(FLAG_BADGE08_GET) == TRUE && IsPlayerSurfingNorth() == TRUE)
+    {
+        ScriptContext_SetupScript(EventScript_UseWaterfall);
+    }
+    else
+    {
+        ScriptContext_SetupScript(EventScript_CannotUseWaterfall);
+    }
     DestroyTask(taskId);
 }
 

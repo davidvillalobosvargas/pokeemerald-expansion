@@ -3820,3 +3820,6 @@ static const u8 sFieldDiveDesc[] = _(
 static const u8 sFieldFlashDesc[] = _(
     "Illuminate dark\n"
     "caves.");
+
+static const u8 sFieldWaterfallDesc[] = _(
+    "Climb waterfalls.");
