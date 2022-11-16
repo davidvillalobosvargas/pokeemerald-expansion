@@ -3816,3 +3816,7 @@ static const u8 sFieldDiveDesc[] = _(
     "Go underwater in\n"
     "dark patches of\n"
     "water.");
+
+static const u8 sFieldFlashDesc[] = _(
+    "Illuminate dark\n"
+    "caves.");

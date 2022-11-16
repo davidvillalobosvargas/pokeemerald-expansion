@@ -82,6 +82,7 @@ static void ItemUseOnFieldCB_Strength(u8);
 static void ItemUseOnFieldCB_Surf(u8);
 static void ItemUseOnFieldCB_Dive(u8);
 static void ItemUseOnFieldCB_DiveUnderWater(u8);
+static void ItemUseOnFieldCB_Flash(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1340,6 +1341,26 @@ static void ItemUseOnFieldCB_DiveUnderWater(u8 taskId)
 {
     gFieldEffectArguments[0] = gPartyMenu.slotId=0;
     ScriptContext_SetupScript(EventScript_UseDiveUnderwater);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Flash(u8 taskId)
+{
+    if (gMapHeader.cave == TRUE && !FlagGet(FLAG_SYS_USE_FLASH) && FlagGet(FLAG_BADGE02_GET))
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Flash;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Flash(u8 taskId)
+{
+    PlaySE(SE_M_REFLECT);
+    FlagSet(FLAG_SYS_USE_FLASH);
+    ScriptContext_SetupScript(EventScript_UseFlash);
     DestroyTask(taskId);
 }
 

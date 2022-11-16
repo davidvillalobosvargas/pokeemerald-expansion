@@ -809,6 +809,7 @@ const u32 *const gItemIconTable[ITEMS_COUNT + 1][2] =
     [ITEM_FIELD_STRENGTH] = {gItemIcon_FocusBand, gItemIconPalette_FocusBand},
     [ITEM_FIELD_SURF] = {gItemIcon_Scarf, gItemIconPalette_BlueScarf},
     [ITEM_FIELD_DIVE] = {gItemIcon_Scarf, gItemIconPalette_PinkScarf},
+    [ITEM_FIELD_FLASH] = {gItemIcon_KingsRock, gItemIconPalette_KingsRock},
     // Return to field arrow
     [ITEMS_COUNT] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
 };

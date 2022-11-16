@@ -9930,4 +9930,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Dive,
     },
+    
+    [ITEM_FIELD_FLASH] =
+    {
+        .name = _("FlashITEM"),
+        .itemId = ITEM_FIELD_FLASH,
+        .price = 0,
+        .description = sFieldFlashDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Flash,
+    },
 };
