@@ -3811,3 +3811,8 @@ static const u8 sFieldStrengthDesc[] = _(
 static const u8 sFieldSurfDesc[] = _(
     "Travel over bodies\n"
     "of water.");
+
+static const u8 sFieldDiveDesc[] = _(
+    "Go underwater in\n"
+    "dark patches of\n"
+    "water.");

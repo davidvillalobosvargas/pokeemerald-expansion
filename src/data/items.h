@@ -9917,4 +9917,17 @@ const struct Item gItems[] =
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_Surf,
     },
+    
+    [ITEM_FIELD_DIVE] =
+    {
+        .name = _("DiveITEM"),
+        .itemId = ITEM_FIELD_DIVE,
+        .price = 0,
+        .description = sFieldDiveDesc,
+        .importance = 1,
+        .registrability = TRUE,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Dive,
+    },
 };

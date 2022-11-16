@@ -44,6 +44,8 @@
 #include "constants/songs.h"
 #include "fldeff.h"
 #include "region_map.h"
+#include "field_control_avatar.h"
+#include "constants/map_types.h"
 
 static void SetUpItemUseCallback(u8);
 static void FieldCB_UseItemOnField(void);
@@ -78,6 +80,8 @@ static void ItemUseOnFieldCB_Cut(u8);
 static void ItemUseOnFieldCB_Fly(u8);
 static void ItemUseOnFieldCB_Strength(u8);
 static void ItemUseOnFieldCB_Surf(u8);
+static void ItemUseOnFieldCB_Dive(u8);
+static void ItemUseOnFieldCB_DiveUnderWater(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1305,6 +1309,37 @@ static void ItemUseOnFieldCB_Surf(u8 taskId)
 {
     gFieldEffectArguments[0] = gPartyMenu.slotId=0;
     ScriptContext_SetupScript(EventScript_UseSurf);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Dive(u8 taskId)
+{
+    if (FlagGet(FLAG_BADGE07_GET) && TrySetDiveWarp() == 2)
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Dive;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else if (FlagGet(FLAG_BADGE07_GET) && gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_DiveUnderWater;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else{
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Dive(u8 taskId)
+{
+    gFieldEffectArguments[0] = gPartyMenu.slotId=0;
+    ScriptContext_SetupScript(EventScript_UseDive);
+    DestroyTask(taskId);
+}
+
+static void ItemUseOnFieldCB_DiveUnderWater(u8 taskId)
+{
+    gFieldEffectArguments[0] = gPartyMenu.slotId=0;
+    ScriptContext_SetupScript(EventScript_UseDiveUnderwater);
     DestroyTask(taskId);
 }
 

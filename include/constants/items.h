@@ -932,8 +932,9 @@
 #define ITEM_FIELD_FLY 760
 #define ITEM_FIELD_STRENGTH 761
 #define ITEM_FIELD_SURF 762
+#define ITEM_FIELD_DIVE 763
 
-#define ITEMS_COUNT 763
+#define ITEMS_COUNT 764
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations
