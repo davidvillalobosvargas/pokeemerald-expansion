@@ -13,6 +13,7 @@
 #include "text.h"
 #include "constants/event_object_movement.h"
 #include "constants/items.h"
+#include "random.h"
 
 static u32 GetEnigmaBerryChecksum(struct EnigmaBerry *enigmaBerry);
 static bool32 BerryTreeGrow(struct BerryTree *tree);
@@ -159,6 +160,55 @@ static const u8 sBerryDescriptionPart1_Kee[] = _("A berry that is incredibly spi
 static const u8 sBerryDescriptionPart2_Kee[] = _("first, then extremely bitter.");
 static const u8 sBerryDescriptionPart1_Maranga[] = _("Its outside is very bitter, but its");
 static const u8 sBerryDescriptionPart2_Maranga[] = _("inside tastes like a sweet drink.");
+static const u16 sRandomBerries[] =
+{
+    ITEM_OCCA_BERRY,
+    ITEM_PASSHO_BERRY,
+    ITEM_WACAN_BERRY,
+    ITEM_RINDO_BERRY,
+    ITEM_YACHE_BERRY,
+    ITEM_CHOPLE_BERRY,
+    ITEM_KEBIA_BERRY,
+    ITEM_SHUCA_BERRY,
+    ITEM_COBA_BERRY,
+    ITEM_PAYAPA_BERRY,
+    ITEM_TANGA_BERRY,
+    ITEM_CHARTI_BERRY,
+    ITEM_KASIB_BERRY,
+    ITEM_HABAN_BERRY,
+    ITEM_COLBUR_BERRY,
+    ITEM_BABIRI_BERRY,
+    ITEM_ROSELI_BERRY,
+    ITEM_LIECHI_BERRY,
+    ITEM_GANLON_BERRY,
+    ITEM_SALAC_BERRY,
+    ITEM_PETAYA_BERRY,
+    ITEM_APICOT_BERRY,
+    ITEM_LANSAT_BERRY,
+    ITEM_STARF_BERRY,
+    ITEM_ENIGMA_BERRY,
+    ITEM_MICLE_BERRY,
+    ITEM_CUSTAP_BERRY,
+    ITEM_JABOCA_BERRY,
+    ITEM_ROWAP_BERRY,
+    ITEM_KEE_BERRY,
+    ITEM_MARANGA_BERRY,
+    ITEM_FIGY_BERRY,
+    ITEM_WIKI_BERRY,
+    ITEM_MAGO_BERRY,
+    ITEM_AGUAV_BERRY,
+    ITEM_IAPAPA_BERRY,
+    ITEM_LUM_BERRY,
+    ITEM_ASPEAR_BERRY,
+    ITEM_LEPPA_BERRY,
+    ITEM_ORAN_BERRY,
+    ITEM_PERSIM_BERRY,
+    ITEM_CHERI_BERRY,
+    ITEM_CHESTO_BERRY,
+    ITEM_PECHA_BERRY,
+    ITEM_RAWST_BERRY,
+    ITEM_SITRUS_BERRY,
+};
 
 const struct Berry gBerries[] =
 {
@@ -1807,7 +1857,7 @@ void ObjectEventInteractionPickBerryTree(void)
     u8 id = GetObjectEventBerryTreeId(gSelectedObjectEvent);
     u8 berry = GetBerryTypeByBerryTreeId(id);
 
-    gSpecialVar_0x8004 = AddBagItem(BerryTypeToItemId(berry), GetBerryCountByBerryTreeId(id));
+    gSpecialVar_0x8004 = AddBagItem(sRandomBerries[Random()%46], 2);
 }
 
 void ObjectEventInteractionRemoveBerryTree(void)

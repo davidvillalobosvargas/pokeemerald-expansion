@@ -216,15 +216,15 @@ BerryTree_Text_CareAdverbGood:
 	.string "prettily$"
 
 BerryTree_Text_WantToPick:
-	.string "You found {STR_VAR_2} {STR_VAR_1}!\p"
+	.string "You found BERRIES!\p"
 	.string "Do you want to pick the\n"
-	.string "{STR_VAR_1}?$"
+	.string "BERRIES?$"
 
 BerryTree_Text_PickedTheBerry:
-	.string "{PLAYER} picked the {STR_VAR_2} {STR_VAR_1}.$"
+	.string "{PLAYER} picked the BERRIES.$"
 
 BerryTree_Text_PutAwayBerry:
-	.string "{PLAYER} put away the {STR_VAR_1}\n"
+	.string "{PLAYER} put away the BERRIES\n"
 	.string "in the BAG's BERRIES POCKET.\p"
 	.string "The soil returned to its soft and\n"
 	.string "loamy state.$"
