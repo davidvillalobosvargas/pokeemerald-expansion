@@ -185,6 +185,14 @@ LavaridgeTown_Gym_1F_EventScript_GymStatue::
 	releaseall
 	end
 
+LavaridgeTown_Gym_EventScript_LeavingGym::
+	lockall
+	setvar VAR_0x8008, 4
+	goto_if_set FLAG_BADGE04_GET, Common_EventScript_SetGymTrainers
+	goto Common_EventScript_ClearGymTrainers 
+	releaseall
+	end
+
 LavaridgeTown_Gym_1F_Text_GymGuideAdvice:
 	.string "Hey, how's it going, CHAMPION-\n"
 	.string "bound {PLAYER}?\p"

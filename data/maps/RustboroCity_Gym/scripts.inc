@@ -103,6 +103,14 @@ RustboroCity_Gym_EventScript_RegisterRoxanne::
 	releaseall
 	end
 
+RustboroCity_Gym_EventScript_LeavingGym::
+	lockall
+	setvar VAR_0x8008, 1
+	goto_if_set FLAG_BADGE01_GET, Common_EventScript_SetGymTrainers
+	goto Common_EventScript_ClearGymTrainers 
+	releaseall
+	end 
+
 RustboroCity_Gym_Text_GymGuideAdvice:
 	.string "Yo, how's it going?\p"
 	.string "Listen, my friend!\n"

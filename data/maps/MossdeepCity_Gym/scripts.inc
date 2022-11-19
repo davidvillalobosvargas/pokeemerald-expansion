@@ -364,6 +364,14 @@ MossdeepCity_Gym_EventScript_RedFloorSwitch::
 	freerotatingtilepuzzle
 	end
 
+MossdeepCity_Gym_EventScript_LeavingGym::
+	lockall
+	setvar VAR_0x8008, 7
+	goto_if_set FLAG_BADGE07_GET, Common_EventScript_SetGymTrainers
+	goto Common_EventScript_ClearGymTrainers 
+	releaseall
+	end
+
 MossdeepCity_Gym_Text_GymGuideAdvice:
 	.string "Yo, how's it going, CHAMPION-bound\n"
 	.string "{PLAYER}?\p"

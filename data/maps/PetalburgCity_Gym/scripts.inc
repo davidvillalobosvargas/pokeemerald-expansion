@@ -1141,6 +1141,14 @@ PetalburgCity_Gym_EventScript_GymStatue::
 	releaseall
 	end
 
+PetalburgCity_Gym_EventScript_LeavingGym::
+	lockall
+	setvar VAR_0x8008, 5
+	goto_if_set FLAG_BADGE05_GET, Common_EventScript_SetGymTrainers
+	goto Common_EventScript_ClearGymTrainers 
+	releaseall
+	end
+
 PetalburgCity_Gym_Text_DadYoureHereWithYourPokemon:
 	.string "DAD: Hm?\p"
 	.string "Well, if it isn't {PLAYER}!\n"

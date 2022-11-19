@@ -175,6 +175,14 @@ SootopolisCity_Gym_1F_EventScript_GymStatue::
 	releaseall
 	end
 
+SootopolisCity_Gym_EventScript_LeavingGym::
+	lockall
+	setvar VAR_0x8008, 8
+	goto_if_set FLAG_BADGE08_GET, Common_EventScript_SetGymTrainers
+	goto Common_EventScript_ClearGymTrainers 
+	releaseall
+	end 
+
 SootopolisCity_Gym_1F_Text_GymGuideAdvice:
 	.string "Yo! How's it going, CHAMPION-\n"
 	.string "bound {PLAYER}?\p"

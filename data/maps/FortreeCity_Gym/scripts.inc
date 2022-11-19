@@ -132,6 +132,14 @@ FortreeCity_Gym_EventScript_GymStatue::
 	releaseall
 	end
 
+FortreeCity_Gym_EventScript_LeavingGym::
+	lockall
+	setvar VAR_0x8008, 6
+	goto_if_set FLAG_BADGE06_GET, Common_EventScript_SetGymTrainers
+	goto Common_EventScript_ClearGymTrainers 
+	releaseall
+	end
+
 FortreeCity_Gym_Text_GymGuideAdvice:
 	.string "Yo, how's it going, CHAMPION-\n"
 	.string "bound {PLAYER}?\p"
